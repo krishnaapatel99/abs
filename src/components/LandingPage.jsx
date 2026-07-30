@@ -236,7 +236,7 @@ overlayTimeline.set(logoLineRef.current, {
 
 overlayTimeline.add(() => {
   setShowModel(true);
-}, "<0.2");
+}, "<");
         };
 
         createAnimationTimeline();
