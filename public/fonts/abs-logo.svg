@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 340" width="1300" height="340">
+  <defs>
+    <!-- diagonal sliced-panel fill, echoes the light/dark facet bands on the LENIS mark -->
+    <pattern id="slices" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(58)">
+      <rect width="34" height="34" fill="#f98ba0"/>
+      <rect width="6" height="34" fill="#b5566a"/>
+    </pattern>
+  </defs>
+
+  <!-- shadow / bevel layer, offset behind main glyphs for the layered-cut depth -->
+  <g transform="skewX(-10) translate(8,10)" fill="#5c2233">
+    <g transform="translate(20,20)">
+      <path fill-rule="evenodd" d="M95,10 L185,290 L140,290 L118,190 L72,190 L50,290 L5,290 Z M95,35 L115,190 L75,190 Z"/>
+    </g>
+    <g transform="translate(230,150)">
+      <path d="M-18,0 L0,-18 L18,0 L0,18 Z"/>
+    </g>
+    <g transform="translate(300,20)">
+      <path d="M0,0 L45,0 L45,300 L0,300 Z M45,15 L175,45 L175,110 L45,140 Z M45,165 L175,190 L175,255 L45,285 Z"/>
+    </g>
+    <g transform="translate(520,150)">
+      <path d="M-18,0 L0,-18 L18,0 L0,18 Z"/>
+    </g>
+    <g transform="translate(590,20)">
+      <path d="M10,0 L170,0 L170,45 L70,140 L170,140 L170,300 L10,300 L10,255 L110,160 L10,160 Z"/>
+    </g>
+  </g>
+
+  <!-- main glyph layer -->
+  <g transform="skewX(-10)" fill="url(#slices)">
+    <g transform="translate(20,20)">
+      <path fill-rule="evenodd" d="M95,10 L185,290 L140,290 L118,190 L72,190 L50,290 L5,290 Z M95,35 L115,190 L75,190 Z"/>
+    </g>
+    <g transform="translate(230,150)">
+      <path d="M-18,0 L0,-18 L18,0 L0,18 Z"/>
+    </g>
+    <g transform="translate(300,20)">
+      <path d="M0,0 L45,0 L45,300 L0,300 Z M45,15 L175,45 L175,110 L45,140 Z M45,165 L175,190 L175,255 L45,285 Z"/>
+    </g>
+    <g transform="translate(520,150)">
+      <path d="M-18,0 L0,-18 L18,0 L0,18 Z"/>
+    </g>
+    <g transform="translate(590,20)">
+      <path d="M10,0 L170,0 L170,45 L70,140 L170,140 L170,300 L10,300 L10,255 L110,160 L10,160 Z"/>
+    </g>
+  </g>
+</svg>

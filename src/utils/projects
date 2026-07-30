@@ -1,0 +1,104 @@
+const projectsData = [
+  {
+    name: "Morning Broadcast",
+    director: "Ethan Carter",
+    location: "New York, Times Square"
+  },
+  {
+    name: "City Lights",
+    director: "Olivia Bennett",
+    location: "Los Angeles, Hollywood"
+  },
+  {
+    name: "Live Pulse",
+    director: "Noah Richardson",
+    location: "London, Canary Wharf"
+  },
+  {
+    name: "Breaking Point",
+    director: "Sophia Mitchell",
+    location: "Chicago, Millennium Park"
+  },
+  {
+    name: "Prime Focus",
+    director: "Liam Anderson",
+    location: "Paris, Champs-Élysées"
+  },
+  {
+    name: "Studio One",
+    director: "Emma Harrison",
+    location: "Tokyo, Shibuya Crossing"
+  },
+  {
+    name: "Global Feed",
+    director: "Lucas Walker",
+    location: "Singapore, Marina Bay"
+  },
+  {
+    name: "Beyond Vision",
+    director: "Amelia Foster",
+    location: "Dubai, Downtown Dubai"
+  },
+  {
+    name: "Signal Live",
+    director: "James Collins",
+    location: "Berlin, Alexanderplatz"
+  },
+  {
+    name: "Frame Shift",
+    director: "Charlotte Brooks",
+    location: "Sydney, Circular Quay"
+  },
+  {
+    name: "Next Scene",
+    director: "Benjamin Hughes",
+    location: "Toronto, Distillery District"
+  },
+  {
+    name: "True Lens",
+    director: "Grace Parker",
+    location: "Barcelona, Gothic Quarter"
+  },
+  {
+    name: "Vision Plus",
+    director: "Henry Cooper",
+    location: "Amsterdam, Jordaan"
+  },
+  {
+    name: "The Broadcast",
+    director: "Ella Morgan",
+    location: "Seoul, Gangnam"
+  },
+  {
+    name: "Echo Studio",
+    director: "Daniel Scott",
+    location: "Mumbai, Bandra"
+  },
+  {
+    name: "Media Pulse",
+    director: "Scarlett Reed",
+    location: "Delhi, Connaught Place"
+  },
+  {
+    name: "Infinite Frame",
+    director: "Jack Turner",
+    location: "Hong Kong, Victoria Harbour"
+  },
+  {
+    name: "Vision Network",
+    director: "Ava Murphy",
+    location: "Rome, Trastevere"
+  },
+  {
+    name: "Spotlight",
+    director: "Michael Evans",
+    location: "San Francisco, Golden Gate"
+  },
+  {
+    name: "Live Connect",
+    director: "Mia Thompson",
+    location: "Istanbul, Galata Tower"
+  }
+];
+
+export default projectsData;
