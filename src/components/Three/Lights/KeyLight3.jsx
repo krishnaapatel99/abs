@@ -1,17 +1,17 @@
 import { useRef } from "react";
 
-export default function KeyLight2() {
+export default function KeyLight3() {
   const light = useRef();
 
-  const posX = -7.5;
-  const posY = 25.3;
-  const posZ = 5.9;
-  const rotX = 1.59;
-  const rotY = -3.03;
-  const rotZ = -1.94;
-  const width = 12.7;
-  const height = 1.9;
-  const intensity = 43.9;
+  const posX = -2.7;
+  const posY = 18.0;
+  const posZ = -6.0;
+  const rotX = -0.58;
+  const rotY = -3.49;
+  const rotZ = 1.65;
+  const width = 2.2;
+  const height = 8.3;
+  const intensity = 50.7;
   const color = "#ff98a2";
 
   return (

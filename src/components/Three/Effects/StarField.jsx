@@ -1,20 +1,11 @@
 import { useRef, useMemo, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { onLenisReady } from '../../../lib/lenisStore'; // adjust path to match your project structure
+import { onLenisReady } from '../../../lib/lenisStore';
 
 /**
  * StarField — drop-in background star layer for your existing Canvas.
  * Tuned for a perspective camera at roughly position [0,0,20], fov 45.
-*
- * - Glow: tight crisp core + short soft falloff, matching your CSS .stars
- *   rule (small dot + short drop-shadow blur), normal blending so
- *   overlapping stars don't wash into a bright fog.
- * - Ambient motion: each star wobbles independently via a per-vertex
- *   random seed + time uniform (GPU-computed, cheap regardless of count).
- * - Scroll push: listening to page scroll adds an upward "kick" to all
- *   stars, proportional to how much/fast the user just scrolled, then
- *   decays back to rest — so scrolling reads as giving the stars a shove.
  */
 
 function useStarBuffers(count, spreadX, spreadY, zMin, zMax) {
@@ -33,7 +24,7 @@ function useStarBuffers(count, spreadX, spreadY, zMin, zMax) {
 
 function StarLayer({
   count, size, opacity, spreadX, spreadY, zMin, zMax,
-  wobbleAmp, wobbleSpeed, pushStrength, scrollPush,
+  wobbleAmp, wobbleSpeed, pushStrength, scrollPush, color,
 }) {
   const materialRef = useRef();
   const { pos, seed } = useStarBuffers(count, spreadX, spreadY, zMin, zMax);
@@ -50,10 +41,21 @@ function StarLayer({
     materialRef.current.uniforms.scrollPush.value = scrollPush.value;
   });
 
+  useEffect(() => {
+    if (materialRef.current) {
+      materialRef.current.uniforms.color.value.set(color);
+      materialRef.current.uniforms.opacity.value = opacity;
+      materialRef.current.uniforms.pointSize.value = size;
+      materialRef.current.uniforms.wobbleAmp.value = wobbleAmp;
+      materialRef.current.uniforms.wobbleSpeed.value = wobbleSpeed;
+      materialRef.current.uniforms.pushStrength.value = pushStrength;
+    }
+  }, [color, opacity, size, wobbleAmp, wobbleSpeed, pushStrength]);
+
   const starShader = useMemo(() => {
     return {
       uniforms: {
-        color: { value: new THREE.Color('#ffb8c8') },
+        color: { value: new THREE.Color(color) },
         opacity: { value: opacity },
         pointSize: { value: size },
         time: { value: 0 },
@@ -99,10 +101,10 @@ function StarLayer({
       `,
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [opacity, size, wobbleAmp, wobbleSpeed, pushStrength]);
+  }, []);
 
   return (
-    <points>
+    <points key={`${count}-${spreadX}-${spreadY}-${zMin}-${zMax}`}>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[pos, 3]} />
         <bufferAttribute attach="attributes-aSeed" args={[seed, 1]} />
@@ -125,12 +127,21 @@ export default function StarField() {
     typeof navigator !== 'undefined' && navigator.hardwareConcurrency
       ? navigator.hardwareConcurrency <= 4
       : false;
-  const scale = isLowEnd ? 0.6 : 1;
+  const baseScale = isLowEnd ? 0.6 : 1;
 
+  const color = '#ffb8c8';
+  const countScale = 1.0;
+  const sizeScale = 0.5;
+  const opacityScale = 2.00;
   const spreadX = 36;
   const spreadY = 18;
   const zMin = -10;
   const zMax = 6;
+  const wobbleAmpScale = 1.0;
+  const wobbleSpeedScale = 1.0;
+  const pushStrengthScale = 1.0;
+
+  const finalScale = baseScale * countScale;
 
   // Shared scroll-push value, mutated in place so every layer's shader
   // reads the same live number without triggering React re-renders.
@@ -139,13 +150,8 @@ export default function StarField() {
   const unsubscribeScrollRef = useRef(null);
 
   useEffect(() => {
-    // Lenis is created inside useLenis.js and registered into the shared
-    // lenisStore. onLenisReady fires immediately if it's already set up,
-    // or waits until it is — handles either mount order safely.
     const unsubscribeReady = onLenisReady((lenis) => {
       function handleLenisScroll(e) {
-        // e.velocity is Lenis's own smoothed scroll speed — no need to
-        // compute a delta ourselves like with native scroll events.
         velocityRef.current += e.velocity * 0.004;
         velocityRef.current = THREE.MathUtils.clamp(velocityRef.current, -3, 3);
       }
@@ -168,57 +174,47 @@ export default function StarField() {
   return (
     <>
       <StarLayer
-        count={Math.round(80 * scale)}
-        size={0.15}
-        opacity={0.55}
+        count={Math.max(1, Math.round(80 * finalScale))}
+        size={0.15 * sizeScale}
+        opacity={Math.min(1, 0.55 * opacityScale)}
         spreadX={spreadX}
         spreadY={spreadY}
         zMin={zMin}
         zMax={zMax}
-        wobbleAmp={0.4}
-        wobbleSpeed={0.15}
-        pushStrength={0.6}
+        wobbleAmp={0.4 * wobbleAmpScale}
+        wobbleSpeed={0.15 * wobbleSpeedScale}
+        pushStrength={0.6 * pushStrengthScale}
         scrollPush={scrollPush}
+        color={color}
       />
       <StarLayer
-        count={Math.round(35 * scale)}
-        size={0.22}
-        opacity={0.75}
+        count={Math.max(1, Math.round(35 * finalScale))}
+        size={0.22 * sizeScale}
+        opacity={Math.min(1, 0.75 * opacityScale)}
         spreadX={spreadX}
         spreadY={spreadY}
         zMin={zMin}
         zMax={zMax}
-        wobbleAmp={0.5}
-        wobbleSpeed={0.2}
-        pushStrength={1}
+        wobbleAmp={0.5 * wobbleAmpScale}
+        wobbleSpeed={0.2 * wobbleSpeedScale}
+        pushStrength={1.0 * pushStrengthScale}
         scrollPush={scrollPush}
+        color={color}
       />
       <StarLayer
-        count={Math.round(12 * scale)}
-        size={0.3}
-        opacity={0.95}
+        count={Math.max(1, Math.round(12 * finalScale))}
+        size={0.3 * sizeScale}
+        opacity={Math.min(1, 0.95 * opacityScale)}
         spreadX={spreadX}
         spreadY={spreadY}
         zMin={zMin}
         zMax={zMax}
-        wobbleAmp={0.6}
-        wobbleSpeed={0.25}
-        pushStrength={1.4}
+        wobbleAmp={0.6 * wobbleAmpScale}
+        wobbleSpeed={0.25 * wobbleSpeedScale}
+        pushStrength={1.4 * pushStrengthScale}
         scrollPush={scrollPush}
+        color={color}
       />
     </>
   );
 }
-
-/**
- * TUNING NOTES
- * - Scroll push too weak/strong: adjust the 0.15 multiplier in
- *   handleLenisScroll (bigger = stronger kick per unit of Lenis velocity).
- * - Kick lingers too long/fades too fast: adjust the 0.9 decay factor in
- *   the top-level useFrame (closer to 1 = lingers longer, closer to 0 =
- *   snaps back faster).
- * - Want bigger/brighter stars to react more to scroll than dim ones:
- *   already set up via `pushStrength` per layer above — raise/lower those.
- * - Glow/wobble tuning: see notes from the previous version (opacity per
- *   layer, the 700.0 size constant, wobbleAmp/wobbleSpeed).
- */

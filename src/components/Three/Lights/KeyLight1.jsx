@@ -1,25 +1,28 @@
 import { useRef } from "react";
-import { useControls } from "leva";
-import { useHelper } from "@react-three/drei";
-import { RectAreaLightHelper } from "three-stdlib";
 
-export default function KeyLight() {
+export default function KeyLight1() {
   const light = useRef();
 
-  useHelper(light, RectAreaLightHelper, "#FF98A2");
-
-
+  const posX = -10.9;
+  const posY = 17.3;
+  const posZ = 4.5;
+  const rotX = -2.09;
+  const rotY = -2.23;
+  const rotZ = 0.18;
+  const width = 1.8;
+  const height = 5.7;
+  const intensity = 47.7;
+  const color = "#FF98A2";
 
   return (
     <rectAreaLight
-      // ref={light}
-      position={[-4.7, 0.0, 2.7]}
-      rotation={[-1.98, -0.17, 0.75]}
-      width={4.2}
-      height={3.1}
-      intensity={50.0}
-      color="#FF98A2"
+      ref={light}
+      position={[posX, posY, posZ]}
+      rotation={[rotX, rotY, rotZ]}
+      width={width}
+      height={height}
+      intensity={intensity}
+      color={color}
     />
   );
 }
-// -7.0,3.9,8.9,-1.18.-0.39,-0.21,,19.0,5.0,5.0

@@ -1,5 +1,9 @@
 export default function WhySection() {
   const cards = [
+       {
+      title: "",
+       body: "From the first signal to the final frame, ABS keeps every part of the production working as one. Less friction, fewer surprises, and a broadcast experience that simply works when it matters most."
+    },
     {
       title: "Create more immersive experiences",
        body: "Unlock the full potential of your live event. Seamless broadcasting pulls your audience into the flow of the moment, making the technical infrastructure feel so invisible they forget they aren't in the room."
@@ -12,6 +16,11 @@ export default function WhySection() {
       title: "Make your execution flawless",
       body: "Those glitches and delays in live feeds come from fragmented teams and mismatched gear.ABS was built to keep hardware and crew perfectly in sync — so everything moves together,frame for frame."
     },
+     {
+      title: "Built for the moment",
+      body: "Every live event moves fast. ABS keeps your entire broadcast system ready for whatever happens next, with dependable performance that lets your team focus on the show — not the setup."
+    },
+     
     
   ];
 

@@ -1,16 +1,20 @@
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
-import { useControls } from "leva";
 
 export default function BloomEffect() {
-  
+  const intensity = 6.93;
+  const luminanceThreshold = 0.54;
+  const luminanceSmoothing = 0.42;
+  const mipmapBlur = true;
+  const radius = 1.00;
 
   return (
     <EffectComposer>
       <Bloom
-        mipmapBlur
-        intensity={0.93}
-        luminanceThreshold={0.00}
-        luminanceSmoothing={0.72}
+        mipmapBlur={mipmapBlur}
+        intensity={intensity}
+        luminanceThreshold={luminanceThreshold}
+        luminanceSmoothing={luminanceSmoothing}
+        radius={radius}
       />
     </EffectComposer>
   );
