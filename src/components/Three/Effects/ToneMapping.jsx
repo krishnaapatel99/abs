@@ -11,7 +11,6 @@ export default function ToneMapping() {
   useEffect(() => {
     gl.toneMapping = toneMappingMode;
     gl.toneMappingExposure = exposure;
-    gl.needsUpdate = true;
   }, [gl, toneMappingMode, exposure]);
 
   return null;

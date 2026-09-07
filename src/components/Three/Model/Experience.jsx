@@ -4,7 +4,6 @@ import { OrbitControls, Preload } from "@react-three/drei";
 
 import CameraRig from "./CameraRig";
 import ToneMapping from "../Effects/ToneMapping";
-import BloomEffect from "../Effects/BloomEffect";
 import StarField from "../Effects/StarField";
 
 export default function Experience({ showModel }) {
@@ -18,7 +17,7 @@ export default function Experience({ showModel }) {
         </Suspense>
 
         <ToneMapping />
-        {/* <BloomEffect /> */}
+ 
         <Preload all />
 
   

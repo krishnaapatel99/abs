@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import BackgroundScene from './components/overlays/BackgroundScene'
 import Experience from './components/Three/Model/Experience'
 import LandingPage from './components/overlays/LandingPage.jsx'
@@ -11,6 +11,16 @@ import './App.css'
 import HeroSection from './components/Main/Home/HeroSection.jsx'
 import WhiteBackground from './components/Main/Home/WhiteBg.jsx/WhiteBackground.jsx'
 
+// Memoize children that don't depend on showModel/landingComplete
+// so App's state updates don't cascade into re-rendering them.
+const MemoBackgroundScene = memo(BackgroundScene);
+const MemoHeroSection = memo(HeroSection);
+const MemoWhySection = memo(WhySection);
+const MemoCredibility = memo(Credibility);
+const MemoCarousel = memo(Carousel);
+const MemoBoldTransition = memo(BoldTransition);
+const MemoWhiteBackground = memo(WhiteBackground);
+const MemoLandingPage = memo(LandingPage);
 
 function App() {
   const [showModel, setShowModel] = useState(false);
@@ -18,17 +28,17 @@ function App() {
   useLenis();
   return (
       <div>
-        <LandingPage setShowModel={setShowModel} setLandingComplete={setLandingComplete}/>
-        <BackgroundScene/>
+        <MemoLandingPage setShowModel={setShowModel} setLandingComplete={setLandingComplete}/>
+        <MemoBackgroundScene/>
        <Experience showModel={showModel}/>
-       <HeroSection/>
-       <WhySection/>
-       <Credibility/>
-       <Carousel/>
+       <MemoHeroSection/>
+       <MemoWhySection/>
+       <MemoCredibility/>
+       <MemoCarousel/>
        {/* Invisible marker — CameraRig ScrollTrigger ends here */}
        <div id="camera-rig-scroll-end" />
-       <BoldTransition/>
-       <WhiteBackground/>
+       <MemoBoldTransition/>
+       <MemoWhiteBackground/>
     
       </div>
   )

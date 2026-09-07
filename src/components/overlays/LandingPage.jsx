@@ -12,7 +12,6 @@ export default function LandingPage({
   const leftPanelRef = useRef(null);
   const rightPanelRef = useRef(null);
 
-  // Wrappers for the ENTIRE text
   const logoTextRef = useRef(null);
   const broadcastTextRef = useRef(null);
 
@@ -23,10 +22,6 @@ export default function LandingPage({
 
   useLayoutEffect(() => {
     const overlayTimeline = gsap.timeline();
-
-    // --------------------------------------------------
-    // INITIAL STATES
-    // --------------------------------------------------
 
     gsap.set(sparkleRef.current, {
       opacity: 0,
@@ -40,12 +35,8 @@ export default function LandingPage({
 
     gsap.set([leftPanelRef.current, rightPanelRef.current], {
       x: "0%",
-      force3D: true, // pre-establish GPU layer before animating
+      force3D: true,
     });
-
-    // --------------------------------------------------
-    // 1. ANIMATE "ABS" WIPE
-    // --------------------------------------------------
 
     overlayTimeline.to(logoPinkRef.current, {
       clipPath: "inset(0 0 0% 0)",
@@ -53,10 +44,6 @@ export default function LandingPage({
       ease: "hop",
       delay: 0.3,
     });
-
-    // --------------------------------------------------
-    // 2. SPARKLE POP
-    // --------------------------------------------------
 
     overlayTimeline.to(
       sparkleRef.current,
@@ -70,10 +57,6 @@ export default function LandingPage({
       "<0.3"
     );
 
-    // --------------------------------------------------
-    // 3. ANIMATE "BROADCASTING" WIPE
-    // --------------------------------------------------
-
     overlayTimeline.to(
       broadcastPinkRef.current,
       {
@@ -84,10 +67,6 @@ export default function LandingPage({
       "<0.2"
     );
 
-    // --------------------------------------------------
-    // 4. ENTIRE TEXT DISAPPEARS
-    // --------------------------------------------------
-
     overlayTimeline.to(
       [logoTextRef.current, broadcastTextRef.current],
       {
@@ -97,10 +76,6 @@ export default function LandingPage({
       },
       "+=0.7"
     );
-
-    // --------------------------------------------------
-    // 5. SPARKLE DISAPPEARS
-    // --------------------------------------------------
 
     overlayTimeline.to(
       sparkleRef.current,
@@ -114,10 +89,6 @@ export default function LandingPage({
       "<"
     );
 
-    // --------------------------------------------------
-    // 6. SPLIT PANELS
-    // --------------------------------------------------
-
     overlayTimeline.to(
       leftPanelRef.current,
       {
@@ -125,8 +96,7 @@ export default function LandingPage({
         duration: 0.8,
         ease: "hop",
         force3D: true,
-      },
-      "+=0.1"
+      }
     );
 
     overlayTimeline.to(
@@ -150,10 +120,6 @@ export default function LandingPage({
       "<"
     );
 
-    // --------------------------------------------------
-    // CLEANUP
-    // --------------------------------------------------
-
     return () => {
       overlayTimeline.kill();
     };
@@ -162,22 +128,18 @@ export default function LandingPage({
   return (
     <div className="fixed inset-0 z-[50] overflow-hidden select-none pointer-events-none">
 
-      {/* LEFT 50% PANEL */}
       <div
         ref={leftPanelRef}
         className="absolute top-0 left-0 w-1/2 h-screen bg-white overflow-hidden will-change-transform"
       />
 
-      {/* RIGHT 50% PANEL */}
       <div
         ref={rightPanelRef}
         className="absolute top-0 right-0 w-1/2 h-screen bg-white overflow-hidden will-change-transform"
       />
 
-      {/* CENTER CONTENT */}
       <div className="absolute inset-0 flex flex-col justify-center items-center">
 
-        {/* ABS MAIN TITLE */}
         <div ref={logoTextRef} className="relative">
           <h1 className="relative text-center font-sans-serif text-[5.5rem] sm:text-[7rem] md:text-[8.5rem] font-black leading-[0.9] tracking-tight">
 
@@ -201,7 +163,6 @@ export default function LandingPage({
           </h1>
         </div>
 
-        {/* BROADCASTING */}
         <div ref={broadcastTextRef} className="relative mt-2 md:mt-3">
           <p className="relative text-center font-akira text-sm sm:text-lg md:text-2xl tracking-[10px] sm:tracking-[14px] md:tracking-[18px] uppercase">
 
