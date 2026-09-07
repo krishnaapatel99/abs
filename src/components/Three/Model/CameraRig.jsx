@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+﻿import { useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { gsap } from "gsap";
@@ -311,18 +311,6 @@ export default function CameraRig() {
     // DEBUG SCROLL PERCENTAGE
     // -------------------------------------------------------------------------
 
-    const progressElement =
-      document.getElementById(
-        "scroll-progress-debug"
-      );
-
-    if (progressElement) {
-      progressElement.textContent =
-        `${Math.round(sp * 100)}%`;
-    }
-
-    // -------------------------------------------------------------------------
-    // HIDE MODEL AFTER 85%
     // -------------------------------------------------------------------------
     //
     // IMPORTANT:

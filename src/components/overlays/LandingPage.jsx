@@ -108,7 +108,7 @@ export default function LandingPage({
         opacity: 0,
         scale: 0,
         rotate: 360,
-        duration: 1.5,
+        duration: 1,
         ease: "hop",
       },
       "<"
@@ -122,8 +122,8 @@ export default function LandingPage({
       leftPanelRef.current,
       {
         x: "-100%",
-        duration: 1,
-        ease: "none",
+        duration: 0.8,
+        ease: "hop",
         force3D: true,
       },
       "+=0.1"
@@ -133,8 +133,8 @@ export default function LandingPage({
       rightPanelRef.current,
       {
         x: "100%",
-        duration: 1,
-        ease: "none",
+        duration: 0.8,
+        ease: "hop",
         force3D: true,
 
         onComplete: () => {

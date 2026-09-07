@@ -18,10 +18,10 @@ export default function Experience({ showModel }) {
         </Suspense>
 
         <ToneMapping />
-        <BloomEffect />
+        {/* <BloomEffect /> */}
         <Preload all />
 
-        {/* <OrbitControls ... /> */}
+  
       </Canvas>
     </div>
   );
