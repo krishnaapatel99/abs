@@ -6,21 +6,20 @@ import CameraRig from "./CameraRig";
 import ToneMapping from "../Effects/ToneMapping";
 import StarField from "../Effects/StarField";
 
-export default function Experience({ showModel }) {
+export default function Experience({ showModel,landingComplete }) {
   return (
-    <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, zIndex: -10 }}>
+     <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, zIndex: -10 }}>
       <Canvas camera={{ position: [0, 0, 20], fov: 45 }}>
         <StarField />
 
-        <Suspense fallback={null}>
-          <CameraRig />
-        </Suspense>
+        {showModel  && (
+          <Suspense fallback={null}>
+            <CameraRig />
+          </Suspense>
+        )}
 
         <ToneMapping />
- 
         <Preload all />
-
-  
       </Canvas>
     </div>
   );

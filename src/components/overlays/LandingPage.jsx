@@ -89,37 +89,39 @@ export default function LandingPage({
       "<"
     );
 
-    overlayTimeline.to(
-      leftPanelRef.current,
-      {
-        x: "-100%",
-        duration: 0.8,
-        ease: "hop",
-        force3D: true,
+   overlayTimeline.to(
+  leftPanelRef.current,
+  {
+    x: "-100%",
+    duration: 0.8,
+    ease: "hop",
+    force3D: true,
+    onStart: () => {
+      // Start mounting the model NOW, while panels are still
+      // sliding — gives it time to load/compile before it's visible
+      if (setShowModel) {
+        setShowModel(true);
       }
-    );
+    },
+  }
+);
 
-    overlayTimeline.to(
-      rightPanelRef.current,
-      {
-        x: "100%",
-        duration: 0.8,
-        ease: "hop",
-        force3D: true,
+overlayTimeline.to(
+  rightPanelRef.current,
+  {
+    x: "100%",
+    duration: 0.8,
+    ease: "hop",
+    force3D: true,
 
-        onComplete: () => {
-          if (setLandingComplete) {
-            setLandingComplete(true);
-          }
-
-          if (setShowModel) {
-            setShowModel(true);
-          }
-        },
-      },
-      "<"
-    );
-
+    onComplete: () => {
+      if (setLandingComplete) {
+        setLandingComplete(true);
+      }
+    },
+  },
+  "<"
+);
     return () => {
       overlayTimeline.kill();
     };

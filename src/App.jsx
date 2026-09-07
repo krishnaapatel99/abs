@@ -30,7 +30,8 @@ function App() {
       <div>
         <MemoLandingPage setShowModel={setShowModel} setLandingComplete={setLandingComplete}/>
         <MemoBackgroundScene/>
-       <Experience showModel={showModel}/>
+     
+<Experience showModel={showModel} landingComplete={landingComplete} />
        <MemoHeroSection/>
        <MemoWhySection/>
        <MemoCredibility/>
