@@ -17,10 +17,10 @@ export default function Experience({ showModel,landingComplete }) {
             <CameraRig />
           </Suspense>
         )}
-
         <ToneMapping />
         <Preload all />
       </Canvas>
+
     </div>
   );
 }

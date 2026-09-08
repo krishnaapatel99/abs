@@ -26,7 +26,7 @@ const PATH = [
   { at: 0.04, x: 10.0, y: -0.5, z: -1.5 },
   { at: 0.34, x: 8.0, y: -0.5, z: -1.5 },
   { at: 0.40, x: 3.0, y: -0.2, z: -1.5 },
-  { at: 0.85, x: -45.0, y: 5.0, z: -2.0 },
+  { at: 0.85, x: -45.0, y:3.0, z: -2.0 },
 ];
 
 // =============================================================================
@@ -39,7 +39,7 @@ const ROTATION_PATH = [
   { at: 0.08, rotation: THREE.MathUtils.degToRad(-180) },
   { at: 0.34, rotation: THREE.MathUtils.degToRad(-450) },
   { at: 0.40, rotation: THREE.MathUtils.degToRad(-520) },
-  { at: 0.85, rotation: THREE.MathUtils.degToRad(-545) },
+  { at: 0.85, rotation: THREE.MathUtils.degToRad(-600) },
 ];
 
 // =============================================================================
