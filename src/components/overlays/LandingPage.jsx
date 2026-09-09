@@ -130,7 +130,7 @@ export default function LandingPage({
     // -----------------------------------
 
     overlayTimeline.to(leftPanelRef.current, {
-      x: "-100%",
+      y: "-100%",
       duration: 0.8,
       ease: "hop",
       force3D: true,
@@ -151,8 +151,8 @@ export default function LandingPage({
     overlayTimeline.to(
       rightPanelRef.current,
       {
-        x: "100%",
-        duration: 0.8,
+        y: "-100%",
+        duration: 0.85,
         ease: "hop",
         force3D: true,
 
